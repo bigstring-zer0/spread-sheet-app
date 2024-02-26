@@ -30,7 +30,7 @@
     background: #ddd;
 }
 
-.cell.cell.header.active {
+.cell.header.active {
     background: lightblue;
     color: white;
 }

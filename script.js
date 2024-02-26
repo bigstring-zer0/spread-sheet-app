@@ -11,12 +11,41 @@ class Cell {
         this.disabled = disabled
         this.data = data
         this.row = row
-        this.column = column
         this.rowName = rowName
+        this.column = column
         this.columnName = columnName
         this.active = active
     }
 }
+
+const alphabets = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N", 
+    "O", 
+    "P", 
+    "Q", 
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+]
 
 initSpreadsheet()
 
@@ -80,6 +109,7 @@ function handleCellClick(cell){
     const rowHeader = spreadsheet[cell.row][0]
     const columnHeaderElement = getElementFromRowCol(columnHeader.row, columnHeader.column)
     const rowHeaderElement = getElementFromRowCol(rowHeader.row, rowHeader.column)
+   
     columnHeaderElement.classList.add('active')
     rowHeaderElement.classList.add('active')
     document.querySelector('#cell-status').innerHTML = cell.columnName + "" + cell.rowName;
