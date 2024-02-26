@@ -73,6 +73,7 @@ function createCellElement(cell) {
 } 
 
 function handleCellClick(cell){
+    clearHeaderActiveStates();
     const columnHeader = spreadsheet[0][cell.column];
     const rowHeader = spreadsheet[cell.row][0]
     const columnHeaderElement = getElementFromRowCol(columnHeader.row, columnHeader.column)
@@ -96,4 +97,12 @@ function drawSheet() {
         }
         spreadsheetContainer.append(rowContainerElement);
     }
-} 
+}
+
+function clearHeaderActiveStates(){
+    const headers = document.querySelectorAll('.header')
+
+    headers.forEach((header) => {
+        header.classList.remove("active");
+    });
+}
