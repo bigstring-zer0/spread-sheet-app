@@ -5,12 +5,14 @@ const spreadsheet = []
 
 
 class Cell {
-    constructor(isHeader, disabled, data, row, column, active = false){
+    constructor(isHeader, disabled, data, row, column, rowName, columnName, active = false){
         this.isHeader = isHeader
         this.disabled = disabled
         this.data = data
         this.row = row
         this.column = column
+        this.rowName = rowName
+        this.columnName = columnName
         this.active = active
     }
 }
@@ -21,7 +23,29 @@ function initSpreadsheet(){
     for (let i = 0; i < ROWS; i++) {
         let spreadsheetRow = []
         for (let j = 0; j < COLS; j++) {
-            const cell = new Cell(false, false, i + "-" + j, i, j, i, j, false)
+            let cellData = ""
+            let isHeader = false;
+            let disabled = false;
+
+            if (j === 0) {
+                cellData = i;
+                isHeader = true;
+                disabled = true;
+            }
+
+            if (i === 0) {
+                cellData = alphabets[j - 1];
+                isHeader = true;
+                disabled = true;
+            }
+
+            if (!cellData) {
+                cellData = "";
+            }
+            const rowName = i;
+            const columnName = alphabets[j - 1];
+
+            const cell = new Cell(isHeader, disabled, cellData, i, j, rowName, columnName, false)
             spreadsheetRow.push(cell)
         }
         spreadsheet.push(spreadsheetRow)
@@ -37,6 +61,11 @@ function createCellElement(cell) {
     cellElement.id = "cell_" + cell.row + cell.column
     cellElement.value = cell.data
     cellElement.disabled = cell.disabled
+
+    if (cell.isHeader) {
+        cellElement.classList.add("header");
+    }
+
     return cellElement
 } 
 
