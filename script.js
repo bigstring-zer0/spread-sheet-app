@@ -32,6 +32,7 @@ function initSpreadsheet(){
                 isHeader = true;
                 disabled = true;
             }
+            
 
             if (i === 0) {
                 cellData = alphabets[j - 1];
@@ -66,8 +67,23 @@ function createCellElement(cell) {
         cellElement.classList.add("header");
     }
 
+    cellElement.onclick = () => handleCellClick(cell);
+
     return cellElement
 } 
+
+function handleCellClick(cell){
+    const columnHeader = spreadsheet[0][cell.column];
+    const rowHeader = spreadsheet[cell.row][0]
+    const columnHeaderElement = getElementFromRowCol(columnHeader.row, columnHeader.column)
+    const rowHeaderElement = getElementFromRowCol(rowHeader.row, rowHeader.column)
+    columnHeaderElement.classList.add('active')
+    rowHeaderElement.classList.add('active')
+}
+
+function getElementFromRowCol(row, col) {
+    return document.querySelector('#cell_' + row + col)
+}
 
 function drawSheet() {
     for (let i = 0; i < spreadsheet.length; i++){
