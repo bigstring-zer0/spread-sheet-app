@@ -35,7 +35,7 @@ const alphabets = [
     "N", 
     "O", 
     "P", 
-    "Q", 
+    "Q",
     "R",
     "S",
     "T",
