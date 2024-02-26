@@ -25,3 +25,8 @@
     border: 3px solid lightblue;
 } 
 
+.cell.header {
+    text-align: center;
+    background: #ddd;
+}
+
