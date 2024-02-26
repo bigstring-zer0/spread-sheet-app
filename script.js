@@ -2,6 +2,7 @@ const spreadsheetContainer = document.querySelector("#spreadsheet-container")
 const ROWS = 10
 const COLS = 10
 const spreadsheet = []
+const exportBtn = document.querySelector("#export-btn")
 
 
 class Cell {
@@ -68,6 +69,7 @@ function createCellElement(cell) {
     }
 
     cellElement.onclick = () => handleCellClick(cell);
+    cellElement.onchange = (e) => handleOnChange(e.target.vluae, cell)
 
     return cellElement
 } 
@@ -106,3 +108,29 @@ function clearHeaderActiveStates(){
         header.classList.remove("active");
     });
 }
+
+exportBtn.onclick = function (e) {
+    let csv = ""
+    for (let i = 0; i < spreadsheet.length; i++) {
+        if (i === 0) continue;
+        csv += 
+        spreadsheet[i]
+        .filter((item) => !item.isHeader)
+        .map((item) => item.data)
+        .join(",") + "\r\n"
+    }
+
+    const csvObject = new Blob([csv])
+    const csvUrl = URL.createObjectURL(csvObject)
+    console.log("csv", csvUrl)
+
+    const a = document.createElement('a')
+    a.href = csvUrl
+    a.download = "Spreadsheet File Name.csv"
+    a.click()
+}
+
+function handleOnChange(data, cell) {
+    cell.data = data
+}
+
