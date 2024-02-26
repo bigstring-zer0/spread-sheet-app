@@ -164,4 +164,3 @@ exportBtn.onclick = function (e) {
 function handleOnChange(data, cell) {
     cell.data = data
 }
-
