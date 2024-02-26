@@ -82,6 +82,7 @@ function handleCellClick(cell){
     const rowHeaderElement = getElementFromRowCol(rowHeader.row, rowHeader.column)
     columnHeaderElement.classList.add('active')
     rowHeaderElement.classList.add('active')
+    document.querySelector('#cell-status').innerHTML = cell.columnName + "" + cell.rowName;
 }
 
 function getElementFromRowCol(row, col) {
