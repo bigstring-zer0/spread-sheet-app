@@ -30,5 +30,11 @@ function initSpreadsheet(){
 
 }
 
-
-
+function createCellElement(cell) {
+    const cellElement = document.createElement("input");
+    cellElement.className = "cell"
+    cellElement.id = "cell_" + cell.row + cell.column
+    cellElement.value = cell.data
+    cellElement.disabled = cell.disabled
+    return cellElement
+}
