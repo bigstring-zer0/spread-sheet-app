@@ -26,6 +26,7 @@ function initSpreadsheet(){
         }
         spreadsheet.push(spreadsheetRow)
     }
+    drawSheet();
     console.log("spreadsheet", spreadsheet)
 
 }
@@ -37,4 +38,17 @@ function createCellElement(cell) {
     cellElement.value = cell.data
     cellElement.disabled = cell.disabled
     return cellElement
-}
+} 
+
+function drawSheet() {
+    for (let i = 0; i < spreadsheet.length; i++){
+        const rowContainerElement = document.createElement("div");
+        rowContainerElement.className = "cell-row";
+
+        for (let j = 0; j < spreadsheet[i].length; j++) {
+            const cell = spreadsheet[i][j]
+            rowContainerElement.append(createCellElement(cell));
+        }
+        spreadsheetContainer.append(rowContainerElement);
+    }
+} 
